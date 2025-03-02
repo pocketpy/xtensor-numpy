@@ -6,7 +6,8 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 # Include pybind11 and numpy
-include_directories("${CMAKE_CURRENT_LIST_DIR}/../../include")
+set(POCKETPY_DIR "${CMAKE_CURRENT_LIST_DIR}/pocketpy/")
+include_directories("${POCKETPY_DIR}/include")
 include_directories("${CMAKE_CURRENT_LIST_DIR}/include")
 
 # Control xtensor warnings (OFF by default)
@@ -41,13 +42,13 @@ if(WIN32)
     target_link_libraries(
         ${PROJECT_NAME}
         PRIVATE
-        ${CMAKE_CURRENT_LIST_DIR}/../../build/Release/pocketpy.lib
+        ${POCKETPY_DIR}/build/Release/pocketpy.lib
     )
 else()
     target_link_libraries(
         ${PROJECT_NAME}
         PRIVATE
-        ${CMAKE_CURRENT_LIST_DIR}/../../build/libpocketpy.so
+        ${POCKETPY_DIR}/build/libpocketpy.so
     )
 endif()
 
